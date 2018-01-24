@@ -59,6 +59,35 @@
 
 <script>
 
+  //what i learned
+  //addEventListener('event', func) -> keydown(windows) and transitionend(div)
+  //document.querySelector
+  //audio with src. audio.play(), audio.currentTime
+  //difference between quotation marks?
+  //element.classList.add or remove a class from an element
+  //array.forEach('event', func)
+
+  window.addEventListener('keydown', function(event){
+    const audio = document.querySelector(`audio[data-key="${event.keyCode}"]`);
+    const button = document.querySelector(`div[data-key="${event.keyCode}"]`); 
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play()
+    button.classList.add("playing");
+
+  });
+
+
+  const buttons = document.querySelectorAll(".key");
+  buttons.forEach(function(element){
+    element.addEventListener('transitionend', function(event){
+      if (event.propertyName == "transform"){
+        element.classList.remove("playing");
+      }
+    })
+    }   
+  );
+
 </script>
 
 
